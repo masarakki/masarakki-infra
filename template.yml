@@ -7,22 +7,6 @@ Resources:
     Type: AWS::S3::Bucket
     Properties:
       BucketName: !Join [ '', [ 'masarakki-sam-deploy', !Ref Postfix ] ]
-  JisuiUploadPolicy:
-    Type: AWS::IAM::Policy
-    Properties:
-      PolicyName: !Join [ '', [ 'JisuiUploadPolicy', !Ref Postfix ] ]
-      Groups:
-        - !Ref JisuiUploadGroup
-      PolicyDocument:
-        Statement:
-          - Effect: Allow
-            Action:
-              - s3:GetObject
-              - s3:PutObject
-            Resource:
-              - arn:aws:s3:::masarakki/Dojin/*
-  JisuiUploadGroup:
-    Type: AWS::IAM::Group
 Outputs:
   SamDeployBucket:
     Value: !Ref SamDeployBucket
