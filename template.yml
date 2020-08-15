@@ -1,12 +1,8 @@
-Parameters:
-  Postfix:
-    Type: String
-    Default: ''
 Resources:
   SamDeployBucket:
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: !Join [ '', [ 'masarakki-sam-deploy', !Ref Postfix ] ]
+      BucketName: masarakki-sam-deploy
 Outputs:
   SamDeployBucket:
     Value: !Ref SamDeployBucket
