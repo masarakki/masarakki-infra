@@ -14,7 +14,7 @@ Resources:
     Properties:
       Name: sato-sa.to
   SatoSatoCert:
-    Type: AWS::CertificationManager::Certificate
+    Type: AWS::CertificateManager::Certificate
     Properties:
       DomainName: sato-sa.to
       SubjectAlternativeNames:
