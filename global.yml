@@ -18,5 +18,3 @@ Outputs:
     Value: !Ref SatoSatoZone
   NpCompleteCert:
     Value: !Ref NpCompleteCert
-  SatoSatoCert:
-    Value: !Ref SatoSatoCert
