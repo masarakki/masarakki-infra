@@ -22,7 +22,7 @@ Resources:
       DomainValidationOptions:
         - DomainName: sato-sa.to
           HostedZoneId: !Ref SatoSatoZone
-      ValidateionMethod: DNS
+      ValidationMethod: DNS
 Outputs:
   SatoSatoZone:
     Value: !Ref SatoSatoZone
