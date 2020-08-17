@@ -13,8 +13,20 @@ Resources:
     Type: AWS::Route53::HostedZone
     Properties:
       Name: sato-sa.to
+  SatoSatoCert:
+    Type: AWS::CertificateManager::Certificate
+    Properties:
+      DomainName: sato-sa.to
+      SubjectAlternativeNames:
+        - '*.sato-sa.to'
+      DomainValidationOptions:
+        - DomainName: sato-sa.to
+          HostedZoneId: !Ref SatoSatoZone
+      ValidateionMethod: DNS
 Outputs:
   SatoSatoZone:
     Value: !Ref SatoSatoZone
   NpCompleteCert:
     Value: !Ref NpCompleteCert
+  SatoSatoCert:
+    Value: !Ref SatoSatoCert
