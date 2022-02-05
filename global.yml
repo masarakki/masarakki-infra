@@ -38,6 +38,7 @@ Resources:
       RecordSets:
         - Name: hisme.net
           Type: MX
+          TTL: 3600
           ResourceRecords:
             - 10 ASPMX.L.GOOGLE.COM
             - 30 ALT1.ASPMX.L.GOOGLE.COM
