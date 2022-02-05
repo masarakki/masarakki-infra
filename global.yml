@@ -4,7 +4,7 @@ Resources:
     Properties:
       DomainName: np-complete-doj.in
       SubjectAlternativeNames:
-        - '*.np-complete-doj.in'
+        - "*.np-complete-doj.in"
       DomainValidationOptions:
         - DomainName: np-complete-doj.in
           HostedZoneId: Z1UV67RHS6GARQ
@@ -18,7 +18,7 @@ Resources:
     Properties:
       DomainName: sato-sa.to
       SubjectAlternativeNames:
-        - '*.sato-sa.to'
+        - "*.sato-sa.to"
       DomainValidationOptions:
         - DomainName: sato-sa.to
           HostedZoneId: !Ref SatoSatoZone
@@ -27,6 +27,26 @@ Resources:
     Type: AWS::Route53::HostedZone
     Properties:
       Name: masarakki.net
+  HismeZone:
+    Type: AWS::Route53::HostedZone
+    Properties:
+      Name: hisme.net
+  HismeRecordSet:
+    Type: AWS::Route53::RecordSetGroup
+    Properties:
+    HostedZoneId: !Ref HismeZone
+    RecordSets:
+      - Name: hisme.net
+        Type: MX
+        ResourceRecords:
+          - 10 ASPMX.L.GOOGLE.COM
+          - 30 ALT1.ASPMX.L.GOOGLE.COM
+          - 30 ALT2.ASPMX.L.GOOGLE.COM
+          - 50 ASPMX2.GOOGLEMAIL.COM
+          - 50 ASPMX3.GOOGLEMAIL.COM
+          - 50 ASPMX4.GOOGLEMAIL.COM
+          - 50 ASPMX5.GOOGLEMAIL.COM
+
 Outputs:
   SatoSatoZone:
     Value: !Ref SatoSatoZone
