@@ -23,6 +23,10 @@ Resources:
         - DomainName: sato-sa.to
           HostedZoneId: !Ref SatoSatoZone
       ValidationMethod: DNS
+  MasarakkiZone:
+    Type: AWS::Route53::HostedZone
+    Properties:
+      Name: masarakki.net
 Outputs:
   SatoSatoZone:
     Value: !Ref SatoSatoZone
