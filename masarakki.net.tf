@@ -17,3 +17,13 @@ resource "aws_route53_record" "masarakki_net_mx" {
     "50 ASPMX5.GOOGLEMAIL.COM",
   ]
 }
+
+resource "aws_route53_record" "masarakki_net_google_verifycation" {
+  zone_id = aws_route53_zone.masarakki_net.zone_id
+  name    = "masarakki.net"
+  type    = "TXT"
+  ttl     = "300"
+  records = [
+    "google-site-verification=LDCbUyoFnKmyB59S8MsADpeou7QUv4kWHBszUDGU5lM"
+  ]
+}
