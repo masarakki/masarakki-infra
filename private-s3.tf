@@ -12,3 +12,17 @@ resource "aws_s3_bucket_acl" "masarakki-photos-acl" {
   acl      = "private"
   provider = aws.global
 }
+
+resource "aws_s3_bucket_lifecycle_configuration" "masarakki-photos-lifecycle" {
+  bucket   = aws_s3_bucket.masarakki-photos.id
+  provider = aws.global
+
+  rule {
+    id = "rule-1"
+    transition {
+      days          = 30
+      storage_class = "INTELLIGENT_TIERING"
+    }
+    status = "Enabled"
+  }
+}
