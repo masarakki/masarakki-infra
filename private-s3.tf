@@ -53,7 +53,7 @@ resource "aws_s3_bucket_lifecycle_configuration" "masarakki-photos-lifecycle" {
   rule {
     id = "rule-1"
     transition {
-      days          = 30
+      days          = 3
       storage_class = "INTELLIGENT_TIERING"
     }
     status = "Enabled"
