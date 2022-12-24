@@ -1,3 +1,12 @@
+resource "aws_s3_bucket" "masarakki" {
+  bucket   = "masarakki"
+  provider = aws.global
+
+  tags = {
+    Project = "private"
+  }
+}
+
 resource "aws_s3_bucket" "masarakki-photos" {
   bucket   = "masarakki-photos"
   provider = aws.global
@@ -5,6 +14,12 @@ resource "aws_s3_bucket" "masarakki-photos" {
   tags = {
     Project = "private"
   }
+}
+
+resource "aws_s3_bucket_acl" "masarakki-acl" {
+  bucket   = aws_s3_bucket.masarakki.id
+  acl      = "private"
+  provider = aws.global
 }
 
 resource "aws_s3_bucket_acl" "masarakki-photos-acl" {
