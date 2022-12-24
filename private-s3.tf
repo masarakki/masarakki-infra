@@ -28,6 +28,24 @@ resource "aws_s3_bucket_acl" "masarakki-photos-acl" {
   provider = aws.global
 }
 
+resource "aws_s3_bucket_lifecycle_configuration" "masarakki-lifecycle" {
+  bucket   = aws_s3_bucket.masarakki.id
+  provider = aws.global
+
+  rule {
+    id = "rule-1"
+    filter {
+      prefix = "Music/"
+    }
+    transition {
+      days          = 3
+      storage_class = "INTELLIGENT_TIERING"
+    }
+    status = "Enabled"
+  }
+}
+
+
 resource "aws_s3_bucket_lifecycle_configuration" "masarakki-photos-lifecycle" {
   bucket   = aws_s3_bucket.masarakki-photos.id
   provider = aws.global
