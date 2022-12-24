@@ -8,6 +8,7 @@ resource "aws_s3_bucket" "masarakki-photos" {
 }
 
 resource "aws_s3_bucket_acl" "masarakki-photos-acl" {
-  bucket = aws_s3_bucket.masarakki-photos.id
-  acl    = "private"
+  bucket   = aws_s3_bucket.masarakki-photos.id
+  acl      = "private"
+  provider = aws.global
 }
