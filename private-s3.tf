@@ -43,6 +43,18 @@ resource "aws_s3_bucket_lifecycle_configuration" "masarakki-lifecycle" {
     }
     status = "Enabled"
   }
+
+  rule {
+    id = "rule-2"
+    filter {
+      prefix = "Dojin/"
+    }
+    transition {
+      days          = 3
+      storage_class = "INTELLIGENT_TIERING"
+    }
+    status = "Enabled"
+  }
 }
 
 
