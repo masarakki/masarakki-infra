@@ -34,21 +34,6 @@ resource "aws_s3_bucket_lifecycle_configuration" "masarakki-lifecycle" {
 
   rule {
     id = "rule-1"
-    filter {
-      prefix = "Music/"
-    }
-    transition {
-      days          = 3
-      storage_class = "INTELLIGENT_TIERING"
-    }
-    status = "Enabled"
-  }
-
-  rule {
-    id = "rule-2"
-    filter {
-      prefix = "Dojin/"
-    }
     transition {
       days          = 3
       storage_class = "INTELLIGENT_TIERING"
