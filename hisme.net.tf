@@ -1,5 +1,8 @@
 resource "aws_route53_zone" "hisme_net" {
   name = "hisme.net"
+  tags = {
+    Project = "masarakki"
+  }
 }
 
 resource "aws_route53_record" "hisme_net_mx" {

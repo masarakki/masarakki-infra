@@ -1,5 +1,8 @@
 resource "aws_route53_zone" "masarakki_net" {
   name = "masarakki.net"
+  tags = {
+    Project = "masarakki"
+  }
 }
 
 resource "aws_route53_record" "masarakki_net_mx" {

@@ -1,5 +1,8 @@
 resource "aws_route53_zone" "sato-sato" {
   name = "sato-sa.to"
+  tags = {
+    Project = "sato-sato"
+  }
 }
 
 resource "aws_acm_certificate" "sato-sato-cert" {
@@ -8,4 +11,7 @@ resource "aws_acm_certificate" "sato-sato-cert" {
   subject_alternative_names = [
     "*.${aws_route53_zone.sato-sato.name}"
   ]
+  tags = {
+    Project = "sato-sato"
+  }
 }
