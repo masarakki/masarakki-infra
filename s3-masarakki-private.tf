@@ -2,7 +2,7 @@ resource "aws_s3_bucket" "masarakki-private" {
   bucket = "masarakki-private"
 
   tags = {
-    Project = "private"
+    Project = "masarakki"
   }
 }
 
