@@ -9,11 +9,11 @@ resource "aws_s3_bucket" "masarakki-public" {
 
 resource "aws_s3_bucket_policy" "masarakki-public-policy" {
   bucket   = aws_s3_bucket.masarakki-public.id
-  policy   = data.aws_iam_policy_document.allow-public-access.json
+  policy   = data.aws_iam_policy_document.masarakki-public.json
   provider = aws.global
 }
 
-data "aws_iam_policy_document" "allow-public-access" {
+data "aws_iam_policy_document" "masarakki-public" {
   statement {
     effect = "Allow"
     principals {
