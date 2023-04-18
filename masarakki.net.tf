@@ -30,3 +30,13 @@ resource "aws_route53_record" "masarakki_net_google_verifycation" {
     "google-site-verification=LDCbUyoFnKmyB59S8MsADpeou7QUv4kWHBszUDGU5lM"
   ]
 }
+
+resource "aws_route53_record" "masarakki_net_spf" {
+  zone_id = aws_route53_zone.masarakki_net.zone_id
+  name    = "masarakki.net"
+  type    = "TXT"
+  ttl     = "300"
+  records = [
+    "v=spf1 include:_spf.google.com -all"
+  ]
+}
