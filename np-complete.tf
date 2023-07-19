@@ -53,3 +53,52 @@ resource "aws_s3_bucket_public_access_block" "np-complete-books-public-access-bl
   restrict_public_buckets = false
   provider                = aws.global
 }
+
+data "aws_iam_policy_document" "np-complete-github-assume-role-policy" {
+  statement {
+    actions = ["sts:AssumeRoleWithWebIdentity"]
+
+    principals {
+      type        = "Federated"
+      identifiers = [aws_iam_openid_connect_provider.github.arn]
+    }
+
+    condition {
+      test     = "StringLike"
+      variable = "token.actions.githubusercontent.com:sub"
+      values   = ["repo:np-complete/*"]
+    }
+
+    condition {
+      test     = "StringEquals"
+      variable = "token.actions.githubusercontent.com:aud"
+      values   = ["sts.amazonaws.com"]
+    }
+  }
+}
+
+data "aws_iam_policy_document" "upload-np-complete-books-policy" {
+  statement {
+    effect = "Allow"
+    actions = [
+      "s3:PutObject",
+      "s3:PutObjectAcl"
+    ]
+    resources = [
+      "${aws_s3_bucket.np-complete-books.arn}/*"
+    ]
+  }
+}
+resource "aws_iam_role" "publish-np-complete-book-role" {
+  name               = "publish-np-complete-book-role"
+  assume_role_policy = data.aws_iam_policy_document.np-complete-github-assume-role-policy.json
+
+  inline_policy {
+    policy = data.aws_iam_policy_document.upload-np-complete-books-policy.json
+    name   = "upload-np-complete-book-policy"
+  }
+
+  tags = {
+    Project = "np-complete"
+  }
+}
