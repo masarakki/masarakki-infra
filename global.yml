@@ -1,14 +1,4 @@
 Resources:
-  NpCompleteCert:
-    Type: AWS::CertificateManager::Certificate
-    Properties:
-      DomainName: np-complete-doj.in
-      SubjectAlternativeNames:
-        - "*.np-complete-doj.in"
-      DomainValidationOptions:
-        - DomainName: np-complete-doj.in
-          HostedZoneId: Z1UV67RHS6GARQ
-      ValidationMethod: DNS
   SatoSatoZone:
     Type: AWS::Route53::HostedZone
     Properties:
@@ -26,7 +16,5 @@ Resources:
 Outputs:
   SatoSatoZone:
     Value: !Ref SatoSatoZone
-  NpCompleteCert:
-    Value: !Ref NpCompleteCert
   SatoSatoCert:
     Value: !Ref SatoSatoCert
