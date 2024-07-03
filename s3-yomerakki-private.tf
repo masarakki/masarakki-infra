@@ -6,11 +6,6 @@ resource "aws_s3_bucket" "yomerakki-private" {
   }
 }
 
-resource "aws_s3_bucket_acl" "yomerakki-private-acl" {
-  bucket = aws_s3_bucket.yomerakki-private.id
-  acl    = "private"
-}
-
 resource "aws_s3_bucket_lifecycle_configuration" "yomerakki-private-lifecycle" {
   bucket = aws_s3_bucket.yomerakki-private.id
 
