@@ -6,11 +6,6 @@ resource "aws_s3_bucket" "masarakki-infra" {
   }
 }
 
-resource "aws_s3_bucket_acl" "masarakki-infra-acl" {
-  bucket = aws_s3_bucket.masarakki-infra.id
-  acl    = "private"
-}
-
 resource "aws_dynamodb_table" "terraform-locks" {
   name = "terraform_locks"
 

@@ -6,11 +6,6 @@ resource "aws_s3_bucket" "masarakki-private" {
   }
 }
 
-resource "aws_s3_bucket_acl" "masarakki-private-acl" {
-  bucket = aws_s3_bucket.masarakki-private.id
-  acl    = "private"
-}
-
 resource "aws_s3_bucket_lifecycle_configuration" "masarakki-private-lifecycle" {
   bucket = aws_s3_bucket.masarakki-private.id
 
