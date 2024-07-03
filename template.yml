@@ -1,8 +1,0 @@
-Resources:
-  SamDeployBucket:
-    Type: AWS::S3::Bucket
-    Properties:
-      BucketName: masarakki-sam-deploy
-Outputs:
-  SamDeployBucket:
-    Value: !Ref SamDeployBucket
