@@ -1,10 +1,12 @@
 Resources:
   SatoSatoZone:
     Type: AWS::Route53::HostedZone
+    DeletionPolicy: Retain
     Properties:
       Name: sato-sa.to
   SatoSatoCert:
     Type: AWS::CertificateManager::Certificate
+    DeletionPolicy: Retain
     Properties:
       DomainName: sato-sa.to
       SubjectAlternativeNames:
