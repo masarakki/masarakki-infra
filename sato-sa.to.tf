@@ -71,7 +71,7 @@ resource "aws_cloudfront_origin_access_control" "sato-sato" {
 }
 
 locals {
-  s3_origin_id = "satosato.in-s3-origin"
+  s3_origin_id = "sato-sa.to-s3-origin"
 }
 
 resource "aws_cloudfront_distribution" "sato-sato" {
