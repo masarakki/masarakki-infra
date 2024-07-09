@@ -119,3 +119,54 @@ resource "aws_cloudfront_distribution" "sato-sato" {
     Project = "sato-sa.to"
   }
 }
+
+data "aws_iam_policy_document" "sato-sato-github-assume-role-policy" {
+  statement {
+    actions = ["sts:AssumeRoleWithWebIdentity"]
+
+    principals {
+      type        = "Federated"
+      identifiers = [aws_iam_openid_connect_provider.github.arn]
+    }
+
+    condition {
+      test     = "StringLike"
+      variable = "token.actions.githubusercontent.com:sub"
+      values   = ["repo:tanoseesaw/sato-sa.to"]
+    }
+
+    condition {
+      test     = "StringEquals"
+      variable = "token.actions.githubusercontent.com:aud"
+      values   = ["sts.amazonaws.com"]
+    }
+  }
+}
+
+data "aws_iam_policy_document" "deploy-sato-sato-policy" {
+  statement {
+    effect = "Allow"
+    actions = [
+      "s3:PutObject",
+      "s3:PutObjectAcl",
+      "s3:DeleteObject"
+    ]
+    resources = [
+      "${aws_s3_bucket.sato-sato.arn}/*"
+    ]
+  }
+}
+
+resource "aws_iam_role" "deploy-sato-sato-role" {
+  name               = "deploy-sato-sato-role"
+  assume_role_policy = data.aws_iam_policy_document.sato-sato-github-assume-role-policy.json
+
+  inline_policy {
+    policy = data.aws_iam_policy_document.deploy-sato-sato-policy.json
+    name   = "deploy-sato-sato-policy"
+  }
+
+  tags = {
+    Project = "sato-sa.to"
+  }
+}
