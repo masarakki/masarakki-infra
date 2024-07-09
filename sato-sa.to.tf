@@ -1,7 +1,7 @@
 resource "aws_route53_zone" "sato-sato" {
   name = "sato-sa.to"
   tags = {
-    Project = "sato-sato"
+    Project = "sato-sa.to"
   }
 }
 
@@ -13,7 +13,7 @@ resource "aws_acm_certificate" "sato-sato-cert" {
     "*.${aws_route53_zone.sato-sato.name}"
   ]
   tags = {
-    Project = "sato-sato"
+    Project = "sato-sa.to"
   }
 }
 
