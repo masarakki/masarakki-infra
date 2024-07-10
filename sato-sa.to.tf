@@ -132,7 +132,7 @@ data "aws_iam_policy_document" "sato-sato-github-assume-role-policy" {
     condition {
       test     = "StringLike"
       variable = "token.actions.githubusercontent.com:sub"
-      values   = ["repo:tanoseesaw/sato-sa.to"]
+      values   = ["repo:tanoseesaw/sato-sa.to:*"]
     }
 
     condition {
@@ -147,12 +147,21 @@ data "aws_iam_policy_document" "deploy-sato-sato-policy" {
   statement {
     effect = "Allow"
     actions = [
-      "s3:PutObject",
-      "s3:PutObjectAcl",
-      "s3:DeleteObject"
+      "s3:*"
     ]
     resources = [
+      "${aws_s3_bucket.sato-sato.arn}",
       "${aws_s3_bucket.sato-sato.arn}/*"
+    ]
+  }
+
+  statement {
+    effect = "Allow"
+    actions = [
+      "cloudfront:CreateInvalidation"
+    ]
+    resources = [
+      aws_cloudfront_distribution.sato-sato.arn
     ]
   }
 }
