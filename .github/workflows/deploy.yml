@@ -3,6 +3,10 @@ on:
   push:
     branches:
       - master
+permissions:
+  contents: read
+concurrency:
+  group: ${{ github.workflow }}
 jobs:
   terraform:
     runs-on: ubuntu-latest
