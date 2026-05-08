@@ -1,6 +1,49 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:base"
-  ]
+    "config:best-practices",
+    ":pinDigests",
+    "docker:pinDigests",
+    "helpers:pinGitHubActionDigests"
+  ],
+  "dependencyDashboard": true,
+  "labels": ["dependencies"],
+  "assignees": ["masarakki"],
+  "stabilityDays": 3,
+  "rangeStrategy": "pin",
+  "packageRules": [
+    {
+      "description": "Group all non-major dependencies and enable automerge",
+      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+      "groupName": "non-major dependencies",
+      "groupSlug": "non-major",
+      "automerge": true
+    },
+    {
+      "description": "Disable automerge for major updates",
+      "matchUpdateTypes": ["major"],
+      "automerge": false
+    },
+    {
+      "description": "Exempt reliable packages from stability days",
+      "matchPackagePatterns": [
+        "^actions/",
+        "^aws-actions/",
+        "^hashicorp/"
+      ],
+      "matchManagers": ["terraform-version"],
+      "stabilityDays": 0
+    },
+    {
+      "description": "Group all GitHub Actions",
+      "matchManagers": ["github-actions"],
+      "groupName": "github-actions"
+    },
+    {
+      "description": "Group all Terraform updates",
+      "matchManagers": ["terraform", "terraform-version"],
+      "groupName": "terraform"
+    }
+  ],
+  "timezone": "Asia/Tokyo"
 }
