@@ -1,11 +1,6 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "config:best-practices",
-    ":pinDigests",
-    "docker:pinDigests",
-    "helpers:pinGitHubActionDigests"
-  ],
+  "extends": ["config:best-practices"],
   "dependencyDashboard": true,
   "labels": ["dependencies"],
   "assignees": ["masarakki"],
@@ -26,11 +21,7 @@
     },
     {
       "description": "Exempt reliable packages from stability days",
-      "matchPackagePatterns": [
-        "^actions/",
-        "^aws-actions/",
-        "^hashicorp/"
-      ],
+      "matchPackagePatterns": ["^actions/", "^aws-actions/", "^hashicorp/"],
       "matchManagers": ["terraform-version"],
       "stabilityDays": 0
     },
