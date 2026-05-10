@@ -4,7 +4,7 @@
   "dependencyDashboard": true,
   "labels": ["dependencies"],
   "assignees": ["masarakki"],
-  "stabilityDays": 3,
+  "minimumReleaseAge": "3 days",
   "rangeStrategy": "pin",
   "packageRules": [
     {
@@ -21,9 +21,13 @@
     },
     {
       "description": "Exempt reliable packages from stability days",
-      "matchPackagePatterns": ["^actions/", "^aws-actions/", "^hashicorp/"],
       "matchManagers": ["terraform-version"],
-      "stabilityDays": 0
+      "minimumReleaseAge": null,
+      "matchPackageNames": [
+        "/^actions//",
+        "/^aws-actions//",
+        "/^hashicorp//"
+      ]
     },
     {
       "description": "Group all GitHub Actions",
