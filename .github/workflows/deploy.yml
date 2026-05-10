@@ -30,7 +30,7 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
       - name: deploy
-        uses: aws-actions/aws-cloudformation-github-deploy@v2
+        uses: aws-actions/aws-cloudformation-github-deploy@81e3b03d2266bcb76c4bcc37a7d71d9cb67838bb # v2
         with:
           name: masarakki-infra-global
           template: global.yml
